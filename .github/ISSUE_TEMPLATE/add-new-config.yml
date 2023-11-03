@@ -4,24 +4,24 @@ title: New Project Configuration - [PROJECT]
 labels: ['new config']
 assignees: 
 body:
-  - type: markdown
+- type: markdown
     attributes:
       value: "To get started with a customized deployment, please fill out this form. Once you complete the form, a configuration file will be generated and if it is error free, it will be merged into our repository."
-  - type: input
+- type: input
     id: deployment_name
     attributes:
       label: Project Name
       description: Also update `[PROJECT]` in the title above
     validations:
       required: true
-  - type: input
+- type: input
     id: url_abbreviation
     attributes:
       label: Shortened Name
       description: This will become part of the url for your deployment's join page - could be an abbreviation, or along the lines of open-access-study.
     validations:
       required: true
-   - type: dropdown
+- type: dropdown
     id: program_or_study
     attributes:
       label: Program or Study?
