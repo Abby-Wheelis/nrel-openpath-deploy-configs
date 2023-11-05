@@ -21,7 +21,7 @@ body:
     description: This will become part of the url for your deployment's join page - could be an abbreviation, or along the lines of open-access-study.
   validations:
     required: true
-  - type: dropdown
+- type: dropdown
   id: program_or_study
   attributes:
     label: Program or Study?
