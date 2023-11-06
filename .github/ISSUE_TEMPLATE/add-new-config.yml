@@ -233,7 +233,73 @@ body:
   attributes:
     label: Overview Users
     description: 
-    default: "true"
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: overview_active_users
+  attributes:
+    label: Overview Active Users
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: overview_trips
+  attributes:
+    label: Overview Trips
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: overview_signup_trends
+  attributes:
+    label: Overview Signup Trends
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: overview_trips_trend
+  attributes:
+    label: Overview Trips Trend
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: data_uuids
+  attributes:
+    label: Data UUIDs
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: data_trips
+  attributes:
+    label: Data Trips
+    description: 
+    default: 0
     options:  
       - "true"
       - "false"
