@@ -63,13 +63,14 @@ body:
 - type: dropdown
   id: lang_1
   attributes: 
+    label: First Language
     description: Select primary language.
     options:
       - en
       - es
       - lo
-    validations:
-      required: true
+  validations:
+    required: true
 - type: input
   id: deployment_partner_name_lang1
   attributes:
