@@ -159,21 +159,21 @@ body:
     label: Deployment Partner Name
     description: The name of your group or institution.
   validations:
-    required: true
+    required: false
 - type: input
   id: deployment_name_lang2
   attributes:
     label: Project Name
     description: Also update `[PROJECT]` in the title above
   validations:
-    required: true
+    required: false
 - type: input
   id: summary_line_1_lang2
   attributes:
     label: Summary Line 1
     description: 
   validations:
-    required: true
+    required: false
 - type: input
   id: summary_line_2_lang2
   attributes:
@@ -194,14 +194,14 @@ body:
     label: Short Textual Description
     description: 
   validations:
-    required: true
+    required: false
 - type: input
   id: why_we_collect_lang2
   attributes:
     label: Why We Collect
     description: The purpose of your data collection efforts
   validations:
-    required: true
+    required: false
 - type: input
   id: research_question_1_lang2
   attributes:
