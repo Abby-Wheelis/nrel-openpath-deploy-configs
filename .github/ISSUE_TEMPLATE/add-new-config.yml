@@ -280,6 +280,12 @@ body:
   validations: 
     required: true
 - type: input
+  id: custom_dem_survey_path
+  attributes:
+    label: Custom Survey
+    description: If you chose false above, please provide the file name of your custom survey. You will need to submit a PR to add it to our repo - https://github.com/e-mission/nrel-openpath-deploy-configs/tree/main/survey_resources
+    placeholder: json/demo-survey-v2.json
+- type: input
   id: labelTemplate_lang1
   attributes:
     label: First Language
@@ -305,6 +311,13 @@ body:
       - "false"
   validations:
     required: true
+- type: input
+  id: label_options
+  attributes:
+    label: Custom Labels
+    description: If you chose false above, and want drowdown style labeling, please provide the path to your custom labels. You will need to submit a PR to add it to our repo - https://github.com/e-mission/nrel-openpath-deploy-configs/tree/main/label_options
+    placeholder: https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/label_options/example-program-label-options.json
+
 - type: textarea
   id: tripSurveys
   attributes:
