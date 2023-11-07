@@ -5,7 +5,7 @@ labels: ['new config']
 body:
 - type: markdown
   attributes:
-    value: #Project Deployment Config
+    value: # Project Deployment Config
 - type: markdown
   attributes:
     value: "To get started with a customized deployment, please fill out this form. Once you complete the form, a configuration file will be generated and if it is error free, it will be merged into our repository."
@@ -62,10 +62,10 @@ body:
     required: true
 - type: markdown
   attributes:
-    value: "#Translated Text"
+    value: "# Translated Text"
 - type: markdown
   attributes:
-    value: "##First Language"
+    value: "## First Language"
 - type: markdown
   attributes:
     value: "Please enter text for the languages you would like to support. Most projects include English and Spanish, contact us if you have questions about languge support."
@@ -153,7 +153,7 @@ body:
 
 - type: markdown
   attributes:
-    value: "##Second Language"
+    value: "## Second Language"
 - type: dropdown
   id: lang_2
   attributes: 
@@ -238,7 +238,7 @@ body:
 
 - type: markdown
   attributes:
-    value: "##Administrative Dashboard"
+    value: "## Administrative Dashboard"
 - type: markdown
   id: research_question_3_lang2
   attributes:
