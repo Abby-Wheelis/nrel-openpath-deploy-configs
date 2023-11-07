@@ -273,7 +273,7 @@ body:
 - type: dropdown
   id: survey_form_path
   attributes:
-    vallabelue: Use default demographic survey?
+    label: Use default demographic survey?
     options:
       - "true"
       - "false"
