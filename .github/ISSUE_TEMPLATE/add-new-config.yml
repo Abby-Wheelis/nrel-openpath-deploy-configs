@@ -238,6 +238,39 @@ body:
 
 - type: markdown
   attributes:
+    value: "## App Settings"
+- type: dropdown
+  id: use_imperial
+  attributes:
+    label: Use imperial units of measure
+    options:
+      - "true"
+      - "false"
+- type: dropdown
+  id: include_test_users
+  attributes:
+    label: Include test users in metrics?
+    options: 
+      - "true"
+      - "false"
+- type: dropdown
+  id: trip_end_notification
+  attributes:
+    label: Send notifications at trip end?
+    options: 
+      - "true"
+      - "false"
+
+- type: markdown
+  attributes:
+    value: "## Survey Configurations"
+
+- type: markdown
+  attributes:
+    value: "## Reminder Schemes"
+
+- type: markdown
+  attributes:
     value: "## Administrative Dashboard"
 - type: markdown
   id: research_question_3_lang2
