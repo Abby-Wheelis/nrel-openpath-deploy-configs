@@ -5,7 +5,7 @@ labels: ['new config']
 body:
 - type: markdown
   attributes:
-    value: # Project Deployment Config
+    value: "# Project Deployment Config"
 - type: markdown
   attributes:
     value: "To get started with a customized deployment, please fill out this form. Once you complete the form, a configuration file will be generated and if it is error free, it will be merged into our repository."
