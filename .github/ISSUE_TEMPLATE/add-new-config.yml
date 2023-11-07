@@ -335,7 +335,7 @@ body:
   id: token_prefix
   attributes:
     label: Token Prefix 
-    default: "nrelop"
+    placeholder: "nrelop"
     description:
 - type: dropdown
   id: map_heatmap
