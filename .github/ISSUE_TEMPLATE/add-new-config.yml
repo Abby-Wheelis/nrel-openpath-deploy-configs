@@ -317,7 +317,6 @@ body:
     label: Custom Labels
     description: If you chose false above, and want drowdown style labeling, please provide the path to your custom labels. You will need to submit a PR to add it to our repo - https://github.com/e-mission/nrel-openpath-deploy-configs/tree/main/label_options
     placeholder: https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/label_options/example-program-label-options.json
-
 - type: textarea
   id: tripSurveys
   attributes:
@@ -328,6 +327,24 @@ body:
 - type: markdown
   attributes:
     value: "## Reminder Schemes"
+- type: dropdown
+  id: default_reminders
+  attributes:
+    label: Use default reminder schedule?
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: textarea
+  id: reminderSchemes
+  attributes:
+    label: Reminder Schemes
+    description: If you don't wish to use default reminders, please describe your desired reminder scheme. 
+    placeholder: Reminders every day for two weeks, then once a week after that. 
+
 
 - type: markdown
   attributes:
