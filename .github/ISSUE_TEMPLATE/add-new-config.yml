@@ -305,3 +305,101 @@ body:
       - "false"
   validations:
     required: true
+- type: input
+  id: data_trips_columns_exclude
+  attributes:
+    label: Data Trips Columns Exclude 
+    description: Please input columns to exclude, separated by commas
+- type: input
+  id: additional_trip_columns
+  attributes:
+    label: Additional Trip Columns
+    description: Please input columns, separated by commas
+- type: input
+  id: data_uuids_columns_exclude
+  attributes:
+    label: Data Trips Columns Exclude 
+    description: Please input columns to exclude, separated by commas
+- type: dropdown
+  id: token_generate
+  attributes:
+    label: Generate tokens
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: input
+  id: token_prefix
+  attributes:
+    label: Token Prefix 
+    default: "nrelop"
+    description:
+- type: dropdown
+  id: map_heatmap
+  attributes:
+    label: Map Heatmap 
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: map_bubble
+  attributes:
+    label: Map Bubble 
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: map_trip_lines
+  attributes:
+    label: Map Trip Lines
+    description: 
+    default: 1
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: push_send
+  attributes:
+    label: Push Send
+    description: 
+    default: 1
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: options_uuids
+  attributes:
+    label: Options UUIDs
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: options_emails
+  attributes:
+    label: Options Emails
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
