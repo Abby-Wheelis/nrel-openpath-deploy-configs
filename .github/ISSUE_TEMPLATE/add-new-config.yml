@@ -246,6 +246,8 @@ body:
     options:
       - "true"
       - "false"
+    validations:
+      required: true
 - type: dropdown
   id: include_test_users
   attributes:
@@ -253,6 +255,8 @@ body:
     options: 
       - "true"
       - "false"
+    validations:
+      required: true
 - type: dropdown
   id: trip_end_notification
   attributes:
@@ -260,6 +264,8 @@ body:
     options: 
       - "true"
       - "false"
+    validations:
+      required: true
 
 - type: markdown
   attributes:
