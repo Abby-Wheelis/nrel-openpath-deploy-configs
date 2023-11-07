@@ -270,6 +270,44 @@ body:
 - type: markdown
   attributes:
     value: "## Survey Configurations"
+- type: dropdown
+  id: form_path
+  attributes:
+    value: Use default demographic survey?
+    options:
+      - "true"
+      - "false"
+  validations: 
+    required: true
+- type: input
+  id: labelTemplate_lang1
+  attributes:
+    description: Please follow placeholder format to enter language and text
+    placeholder: en - Answered
+  validations:
+    required: true
+- type: input
+  id: labelTemplate_lang2
+  attributes:
+    - placeholder: es - Contestada
+
+- type: markdown
+  attributes:
+    value: "## Labels"
+- type: dropdown
+  id: form_path
+  attributes:
+    value: Use default mode and purpose labels?
+    options:
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: textarea
+  id: tripSurveys
+  attributes:
+    description: If you are not using the default labels OR providing your own, you can provide survey(s) for the trips. Please describe what your desired labeling survey configuration is. We will need you to provide the surveys.
+    placeholder: Two surveys - one for the trip and one for time between trips
 
 - type: markdown
   attributes:
