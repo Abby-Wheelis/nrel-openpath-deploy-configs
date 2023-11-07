@@ -12,7 +12,7 @@ on:
 jobs:
   update_library:
     runs-on: ubuntu-latest
-    name: Convert New built-with-eleventy Issue to Sites Data
+    name: Convert New Deployment Issue to JSON File
     # only continue if issue has "built-with-eleventy" label
     # require an `approved` label for moderation
     #if: contains( github.event.issue.labels.*.name, 'built-with-eleventy') && contains( github.event.issue.labels.*.name, 'approved')
@@ -23,7 +23,7 @@ jobs:
         uses: zachleat/github-issue-to-json-file@v5.0.0
         with:
           # This controls where the JSON files are generated
-          folder: "built-with-eleventy/"
+          folder: "autogen_configs/"
           # This tells the action which GitHub Issue Form template file to use
           issue-template: "add-new-config.yml"
           # This controls which property we use to key the file name hash off of (values should be unique in your data set)
