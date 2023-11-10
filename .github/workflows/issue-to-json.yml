@@ -25,3 +25,10 @@ jobs:
       # This step references the directory that contains the action.
       - name: Use local convertIssue action
         uses: ./.github/actions/convertIssue
+        with:
+        # This controls where the JSON files are generated
+        folder: "configs/"
+        # This tells the action which GitHub Issue Form template file to use
+        issue-template: "add-new-config.yml"
+        # This controls which property we use to key the file name hash off of (values should be unique in your data set)
+        hash-property-name: "url_abbreviation"
