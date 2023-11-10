@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Convert New Config Issue to JSON
-        uses: actions/covertIssue
+        uses: ././github/actions/convertIssue
         with:
           # This controls where the JSON files are generated
           folder: "autogen_configs/"
