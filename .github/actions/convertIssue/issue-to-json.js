@@ -1,8 +1,10 @@
 import { writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 
-import { getInput, exportVariable, setFailed } from "@actions/core";
-import * as github from "@actions/github";
+const core = require('@actions/core)');
+// import { getInput, exportVariable, setFailed } from "@actions/core";
+const github = require('@actions/github');
+// import * as github from "@actions/github";
 
 import { parseIssueBody } from "./parse-issue-body.js";
 
@@ -14,14 +16,14 @@ function getFileName(abbreviation) {
 export async function issueToJson() {
   try {
     // directory to place the file (should be configs folder)
-    const outputDir = getInput("folder");
+    const outputDir = core.getInput("folder");
 
     if (!github.context.payload.issue) {
-      setFailed("Cannot find GitHub issue");
+      core.setFailed("Cannot find GitHub issue");
       return;
     }
 
-    let issueTemplatePath = path.join("./.github/ISSUE_TEMPLATE/", getInput("issue-template"));
+    let issueTemplatePath = path.join("./.github/ISSUE_TEMPLATE/", core.getInput("issue-template"));
 
     //get the information about of the issue
     let { title, number, body, user } = github.context.payload.issue;
@@ -34,16 +36,16 @@ export async function issueToJson() {
 
     configData.opened_by = user.login;
 
-    exportVariable("IssueNumber", number);
+    core.exportVariable("IssueNumber", number);
 
     // create output dir
     await mkdir(outputDir, { recursive: true });
     
-    let abbrevKey = getInput("hash-property-name");
+    let abbrevKey = core.getInput("hash-property-name");
     let fileName = getFileName(configData[ abbrevKey ]);
     await writeFile(path.join(outputDir, fileName), JSON.stringify(configData, null, 2));
   } catch (error) {
-    setFailed(error.message);
+    core.setFailed(error.message);
   }
 }
 
