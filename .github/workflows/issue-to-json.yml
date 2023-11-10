@@ -10,23 +10,12 @@ on:
       - labeled
 
 jobs:
-  update_library:
+  convert_to_config:
     runs-on: ubuntu-latest
-    name: Convert New Deployment Issue to JSON File
     steps:
-      - uses: actions/checkout@v3
-      - uses: ././github/actions/convertIssue/
-        with:
-          # This controls where the JSON files are generated
-          folder: "autogen_configs/"
-          # This tells the action which GitHub Issue Form template file to use
-          issue-template: "add-new-config.yml"
-          # This controls the file name (should be same as urls ie nrel-commute or usaid-laos-ev)
-          file-name-key: "url_abbreviation"
-      - name: Commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add *
-          git commit -m "Adding data file for #${{ env.IssueNumber }}"
-          git push
+      # This step checks out a copy of your repository.
+      - name: Check out repository
+        uses: actions/checkout@v4
+      # This step references the directory that contains the action.
+      - name: Use local convertIssue action
+        uses: ./.github/actions/convertIssue
