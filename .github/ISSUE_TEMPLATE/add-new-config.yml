@@ -5,6 +5,9 @@ labels: ['new config']
 body:
 - type: markdown
   attributes:
+    value: "# Project Deployment Config"
+- type: markdown
+  attributes:
     value: "To get started with a customized deployment, please fill out this form. Once you complete the form, a configuration file will be generated and if it is error free, it will be merged into our repository."
 - type: input
   id: url_abbreviation
@@ -57,6 +60,12 @@ body:
     placeholder: "K. Shankari, NREL (email: k.shankari@nrel.gov, phone: 123-456-7890)"
   validations:
     required: true
+- type: markdown
+  attributes:
+    value: "# Translated Text"
+- type: markdown
+  attributes:
+    value: "## First Language"
 - type: markdown
   attributes:
     value: "Please enter text for the languages you would like to support. Most projects include English and Spanish, contact us if you have questions about languge support."
@@ -142,6 +151,9 @@ body:
   validations:
     required: false
 
+- type: markdown
+  attributes:
+    value: "## Second Language"
 - type: dropdown
   id: lang_2
   attributes: 
@@ -225,6 +237,119 @@ body:
     required: false
 
 - type: markdown
+  attributes:
+    value: "## App Settings"
+- type: dropdown
+  id: use_imperial
+  attributes:
+    label: Use imperial units of measure
+    options:
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: include_test_users
+  attributes:
+    label: Include test users in metrics?
+    options: 
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: trip_end_notification
+  attributes:
+    label: Send notifications at trip end?
+    options: 
+      - "true"
+      - "false"
+  validations:
+    required: true
+
+- type: markdown
+  attributes:
+    value: "## Survey Configurations"
+- type: dropdown
+  id: survey_form_path
+  attributes:
+    label: Use default demographic survey?
+    options:
+      - "true"
+      - "false"
+  validations: 
+    required: true
+- type: input
+  id: custom_dem_survey_path
+  attributes:
+    label: Custom Survey
+    description: If you chose false above, please provide the file name of your custom survey. You will need to submit a PR to add it to our repo - https://github.com/e-mission/nrel-openpath-deploy-configs/tree/main/survey_resources
+    placeholder: json/demo-survey-v2.json
+- type: input
+  id: labelTemplate_lang1
+  attributes:
+    label: First Language
+    description: Please follow placeholder format to enter language and text
+    placeholder: en - Answered
+  validations:
+    required: true
+- type: input
+  id: labelTemplate_lang2
+  attributes:
+    label: Second Language
+    placeholder: es - Contestada
+
+- type: markdown
+  attributes:
+    value: "## Labels"
+- type: dropdown
+  id: label_form_path
+  attributes:
+    label: Use default mode and purpose labels?
+    options:
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: input
+  id: label_options
+  attributes:
+    label: Custom Labels
+    description: If you chose false above, and want drowdown style labeling, please provide the path to your custom labels. You will need to submit a PR to add it to our repo - https://github.com/e-mission/nrel-openpath-deploy-configs/tree/main/label_options
+    placeholder: https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/label_options/example-program-label-options.json
+- type: textarea
+  id: tripSurveys
+  attributes:
+    label: Trip Surveys
+    description: If you are not using the default labels OR providing your own, you can provide survey(s) for the trips. Please describe what your desired labeling survey configuration is. We will need you to provide the surveys.
+    placeholder: Two surveys - one for the trip and one for time between trips
+
+- type: markdown
+  attributes:
+    value: "## Reminder Schemes"
+- type: dropdown
+  id: default_reminders
+  attributes:
+    label: Use default reminder schedule?
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: textarea
+  id: reminderSchemes
+  attributes:
+    label: Reminder Schemes
+    description: If you don't wish to use default reminders, please describe your desired reminder scheme. 
+    placeholder: Reminders every day for two weeks, then once a week after that. 
+
+
+- type: markdown
+  attributes:
+    value: "## Administrative Dashboard"
+- type: markdown
   id: research_question_3_lang2
   attributes:
     value: "These values control the administrative dashboard"
@@ -298,6 +423,104 @@ body:
   id: data_trips
   attributes:
     label: Data Trips
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: input
+  id: data_trips_columns_exclude
+  attributes:
+    label: Data Trips Columns Exclude 
+    description: Please input columns to exclude, separated by commas
+- type: input
+  id: additional_trip_columns
+  attributes:
+    label: Additional Trip Columns
+    description: Please input columns, separated by commas
+- type: input
+  id: data_uuids_columns_exclude
+  attributes:
+    label: Data Trips Columns Exclude 
+    description: Please input columns to exclude, separated by commas
+- type: dropdown
+  id: token_generate
+  attributes:
+    label: Generate tokens
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: input
+  id: token_prefix
+  attributes:
+    label: Token Prefix 
+    placeholder: "nrelop"
+    description:
+- type: dropdown
+  id: map_heatmap
+  attributes:
+    label: Map Heatmap 
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: map_bubble
+  attributes:
+    label: Map Bubble 
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: map_trip_lines
+  attributes:
+    label: Map Trip Lines
+    description: 
+    default: 1
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: push_send
+  attributes:
+    label: Push Send
+    description: 
+    default: 1
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: options_uuids
+  attributes:
+    label: Options UUIDs
+    description: 
+    default: 0
+    options:  
+      - "true"
+      - "false"
+  validations:
+    required: true
+- type: dropdown
+  id: options_emails
+  attributes:
+    label: Options Emails
     description: 
     default: 0
     options:  
