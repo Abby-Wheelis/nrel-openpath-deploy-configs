@@ -13,21 +13,18 @@ jobs:
   update_library:
     runs-on: ubuntu-latest
     name: Convert New Deployment Issue to JSON File
-    # only continue if issue has "built-with-eleventy" label
-    # require an `approved` label for moderation
-    #if: contains( github.event.issue.labels.*.name, 'built-with-eleventy') && contains( github.event.issue.labels.*.name, 'approved')
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: GitHub Issue to JSON
-        uses: zachleat/github-issue-to-json-file@v5.0.0
+      - name: Convert New Config Issue to JSON
+        uses: ./issue-to-json
         with:
           # This controls where the JSON files are generated
           folder: "autogen_configs/"
           # This tells the action which GitHub Issue Form template file to use
           issue-template: "add-new-config.yml"
-          # This controls which property we use to key the file name hash off of (values should be unique in your data set)
-          hash-property-name: "url_abbreviation"
+          # This controls the file name (should be same as urls ie nrel-commute or usaid-laos-ev)
+          file-name-key: "url_abbreviation"
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
