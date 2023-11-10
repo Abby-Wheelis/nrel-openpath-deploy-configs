@@ -2,9 +2,7 @@ import { writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 
 const core = require('@actions/core)');
-// import { getInput, exportVariable, setFailed } from "@actions/core";
 const github = require('@actions/github');
-// import * as github from "@actions/github";
 
 import { parseIssueBody } from "./parse-issue-body.js";
 

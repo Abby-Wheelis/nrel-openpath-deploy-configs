@@ -1,10 +1,6 @@
 import { readFile } from "node:fs/promises";
 
-// import yaml from "js-yaml";
-const jsYAML = require('js-yaml');
-
-// import { cleanupUrl } from "./cleanup-url.js";
-// import { cleanupUsernames } from "./cleanup-usernames.js";
+import yaml from "js-yaml";
 
 function removeNewLines(str) {
   return str.replace(/[\r\n]*/g, "");
@@ -15,7 +11,7 @@ function normalizeNewLines(str) {
 
 export async function parseIssueBody(githubIssueTemplateFile, body) {
   let issueTemplate = await readFile(githubIssueTemplateFile, "utf8");
-  let githubFormData = jsYAML.yaml.load(issueTemplate);
+  let githubFormData = yaml.load(issueTemplate);
 
   // Markdown fields aren’t included in output body
   let fields = githubFormData.body.filter(field => field.type !== "markdown");
