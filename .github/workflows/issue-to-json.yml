@@ -16,10 +16,12 @@ jobs:
       # This step checks out a copy of your repository.
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: install dependency
+      - name: install dependencies
         shell: bash -l {0}
         run: | 
           npm install js-yaml
+          npm i @actions/core
+          npm i @actions/github
       # This step references the directory that contains the action.
       - name: Use local convertIssue action
         uses: ./.github/actions/convertIssue
