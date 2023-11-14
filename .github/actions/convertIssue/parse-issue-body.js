@@ -134,9 +134,9 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
   }
 
   //list of all the boolean values in the admin dashboard section, add to issue template and list for new value
-  let ADMIN_LIST = [overview_users, overview_active_users, overview_trips, overview_signup_trends, 
-                    overview_trips_trend, data_uuids, data_trips, token_generate, map_heatmap, 
-                    map_bubble, map_trip_lines, options_uuids, options_emails];
+  let ADMIN_LIST = ['overview_users', 'overview_active_users', 'overview_trips', 'overview_signup_trends', 
+                    'overview_trips_trend', 'data_uuids', 'data_trips', 'token_generate', 'map_heatmap', 
+                    'map_bubble', 'map_trip_lines', 'options_uuids', 'options_emails'];
 
   for(let i = 0; i < ADMIN_LIST.length; i++) {
     configObject['admin_dashboard'][ADMIN_LIST[i]] = returnObject[ADMIN_LIST[i]];
