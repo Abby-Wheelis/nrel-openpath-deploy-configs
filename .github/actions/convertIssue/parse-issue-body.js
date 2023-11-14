@@ -22,25 +22,29 @@ function getSurveyInfo(dataObject) {
 
   //demographics survey settings
   if(dataObject.survey_form_path) {
-    surveyInfo.surveys.UserProfileSurvey = {
-      "formPath": "json/demo-survey-v2.json",
-      "version": 1,
-      "compatibleWith": 1,
-      "dataKey": "manual/demographic_survey",
-      "labelTemplate": {
-        "en": "Answered",
-        "es": "Contestada"
+    surveyInfo.surveys = { 
+      UserProfileSurvey: {
+        "formPath": "json/demo-survey-v2.json",
+        "version": 1,
+        "compatibleWith": 1,
+        "dataKey": "manual/demographic_survey",
+        "labelTemplate": {
+          "en": "Answered",
+          "es": "Contestada"
+        }
       }
     }
   } else {
-    surveyInfo.surveys.UserProfileSurvey = {
-      "formPath": 'https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/survey_resources/' + dataObject.url_abbreviation + '/' + dataObject.custom_dem_survey_path,
-      "version": 1,
-      "compatibleWith": 1,
-      "dataKey": "manual/demographic_survey",
-      "labelTemplate": {
-        "en": dataObject.labelTemplate_lang1.split('-')[1].strip(),
-        "es": dataObject.labelTemplate_lang2.split('-')[1].strip()
+    surveyInfo.surveys = {
+      UserProfileSurvey: {
+        "formPath": 'https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/survey_resources/' + dataObject.url_abbreviation + '/' + dataObject.custom_dem_survey_path,
+        "version": 1,
+        "compatibleWith": 1,
+        "dataKey": "manual/demographic_survey",
+        "labelTemplate": {
+          "en": dataObject.labelTemplate_lang1.split('-')[1].strip(),
+          "es": dataObject.labelTemplate_lang2.split('-')[1].strip()
+        }
       }
     }
   }
