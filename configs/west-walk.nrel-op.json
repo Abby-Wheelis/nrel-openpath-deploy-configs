@@ -1,7 +1,7 @@
 {
   "url_abbreviation": "west-walk",
   "version": 1,
-  "ts": 1699994977464,
+  "ts": 1699999132763,
   "server": {
     "connectURL": "https://west-walk-openpath.nrel.gov/api/",
     "aggregate_call_auth": "user_only"
