@@ -113,13 +113,15 @@ function getSurveyInfo(dataObject) {
 function getTextForLanguage(language_key, dataObject) {
   const textKeys = ['deployment_partner_name', 'deployment_name', 'summary_line_1', 
                     'summary_line_2', 'summary_line_3', 'short_textual_description', 
-                    'why_we_collect', 'research_question_1', 'research_question_2', 
-                    'research_question_3'];
+                    'why_we_collect'];
   
   let languageText = {};
   for(let i = 0; i < textKeys.length; i++) {
     languageText[textKeys[i]] = dataObject[textKeys[i] + language_key];
   }
+  languageText.research_questions = [dataObject['research_question_1' + language_key],
+                                     dataObject['research_question_2' + language_key],
+                                     dataObject['research_question_3' + language_key]];
 
   return languageText;
 }
