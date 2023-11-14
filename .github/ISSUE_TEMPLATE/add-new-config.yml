@@ -26,6 +26,13 @@ body:
       - study
   validations:
     required: true
+- type: input
+  id: mode_studied
+  attributes:
+    label: Mode Studied
+    description: If program, what is your mode of interest? (make sure it matches one of the labels) - e-bike, bike, walk, bus, etc
+  validations:
+    required: false
 - type: dropdown
   id: autogen
   attributes:

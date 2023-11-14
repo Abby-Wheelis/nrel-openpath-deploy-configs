@@ -180,7 +180,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
     program_or_study: combinedObject.program_or_study,
     start_month: combinedObject.start.split( '/')[0],
     start_year: combinedObject.start.split('/')[1],
-    // mode_studied: , //TODO - add this to the form and find a way to maintain it as optional
+    mode_studied: combinedObject.mode_studied, //TODO - add this to the form and find a way to maintain it as optional
     program_admin_contact: combinedObject.program_admin_contact,
     deployment_partner_name: combinedObject.deployment_partner_name_lang1,
     translated_text: textObject
