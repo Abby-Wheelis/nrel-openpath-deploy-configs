@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "ts": 1699923103142,
+  "ts": 1699985296103,
   "server": {
-    "connectURL": "https://ec-ebikes-openpath.nrel.gov/api/",
+    "connectURL": "https://ec-ebike-openpath.nrel.gov/api/",
     "aggregate_call_auth": "user_only"
   },
   "opcode": {
@@ -14,10 +14,35 @@
   },
   "intro": {
     "program_or_study": "study",
-    "start_month": "11",
-    "start_year": "2023",
     "program_admin_contact": "Abby Wheelis, East County Transportation Office (abby@east.gov)",
     "deployment_partner_name": "East County Transportation Office"
+  },
+  "display_config": {
+    "use_imperial": "true"
+  },
+  "metrics": {
+    "include_test_users": "false"
+  },
+  "profile_controls": {
+    "support_upload": false,
+    "trip_end_notification": "false"
+  },
+  "admin_dashboard": {
+    "overview_users": "true",
+    "overview_active_users": "true",
+    "overview_trips": "true",
+    "overview_signup_trends": "true",
+    "overview_trips_trend": "true",
+    "data_uuids": "true",
+    "data_trips": "true",
+    "token_generate": "true",
+    "token_prefix": "nrelop",
+    "map_heatmap": "nrelop",
+    "map_bubble": "true",
+    "map_trip_lines": "true",
+    "push_send": "false",
+    "options_uuids": "false",
+    "options_emails": "true"
   },
   "opened_by": "Abby-Wheelis"
 }
