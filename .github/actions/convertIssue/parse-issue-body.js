@@ -95,11 +95,11 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
   console.log( { fields, bodyData, returnObject } );
 
   let configObject = {};
-  configObject.version = 1;
-  configObject[ts] = Date.now();
+  configObject['version'] = 1;
+  configObject['ts'] = Date.now();
 
   let connect_url = 'https://' + returnObject[url_abbreviation] + '-openpath.nrel.gov/api/';
-  configObject[server] = {connectURL: connect_url, aggregate_call_auth: 'user_only'}; //TODO check options for call + add to form?
+  configObject['server'] = {connectURL: connect_url, aggregate_call_auth: 'user_only'}; //TODO check options for call + add to form?
 
   let subgroups = returnObject[subgroups].split(',');
   configObject['opcode'] = {autogen: returnObject[autogen], subgroups: subgroups};
