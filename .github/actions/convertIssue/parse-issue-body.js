@@ -25,6 +25,45 @@ function cleanBoolean(str) {
   }
 }
 
+async function parseFields(githubIssueTemplateFile) {
+  let issueTemplate = await readFile(githubIssueTemplateFile, "utf8");
+  let githubFormData = yaml.load(issueTemplate);
+
+  // Markdown fields aren’t included in output body
+  let fields = githubFormData.body.filter(field => field.type !== "markdown");
+  console.log("got ", fields.length, " fields", fields);
+  return fields;
+}
+
+function parseBodyData(body) {
+  // Warning: this will likely not handle new lines in a textarea field input
+  let bodyData = normalizeNewLines(body).split("\n").filter(entry => {
+    return !!entry && !entry.startsWith("###")
+  }).map(entry => {
+    entry = entry.trim();
+
+    return entry === "_No response_" ? "" : entry;
+  });
+  console.log("got form body with length ", bodyData.length, bodyData);
+
+  return bodyData;
+}
+
+function parseCombined(fields, bodyData) {
+  //map fields and entries to an object, then we map that 
+  let returnObject = {};
+  for(let j = 0, k = bodyData.length; j<k; j++) {
+    //skip matching if the field does not exist
+    if(!fields[j]) {
+      continue;
+    }
+    let entry = bodyData[j];
+    returnObject[fields[j].id] = entry;
+  }
+  console.log("combined form and body to get", returnObject);
+  return returnObject;
+}
+
 function getSurveyInfo(dataObject) {
   console.log("constructing survey info");
   let surveyInfo = {};
@@ -80,70 +119,44 @@ function getSurveyInfo(dataObject) {
  * @returns 
  */
 export async function parseIssueBody(githubIssueTemplateFile, body) {
-  let issueTemplate = await readFile(githubIssueTemplateFile, "utf8");
-  let githubFormData = yaml.load(issueTemplate);
-
-  // Markdown fields aren’t included in output body
-  let fields = githubFormData.body.filter(field => field.type !== "markdown");
-  console.log("got ", fields.length, " fields", fields);
-
-  // Warning: this will likely not handle new lines in a textarea field input
-  let bodyData = normalizeNewLines(body).split("\n").filter(entry => {
-    return !!entry && !entry.startsWith("###")
-  }).map(entry => {
-    entry = entry.trim();
-
-    return entry === "_No response_" ? "" : entry;
-  });
-  console.log("got form body with length ", bodyData.length, bodyData);
-
-  //map fields and entries to an object, then we map that 
-  let returnObject = {};
-  for(let j = 0, k = bodyData.length; j<k; j++) {
-    //skip matching if the field does not exist
-    if(!fields[j]) {
-      continue;
-    }
-
-    let entry = bodyData[j];
-
-    returnObject[fields[j].id] = entry;
-  }
-  console.log("combined form and body to get", returnObject);
+  //first handle the input, combined object for key/value pairs
+  let fields = parseFields(githubIssueTemplateFile);
+  let bodyData = parseBodyData(body);
+  let combinedObject = parseCombined(fields, bodyData);
 
   let configObject = {};
-  congigObject['url_abbreviation'] = returnObject.url_abbreviation;
+  congigObject['url_abbreviation'] = combinedObject.url_abbreviation;
   configObject['version'] = 1;
   configObject['ts'] = Date.now();
 
-  let connect_url = 'https://' + returnObject.url_abbreviation + '-openpath.nrel.gov/api/';
+  let connect_url = 'https://' + combinedObject.url_abbreviation + '-openpath.nrel.gov/api/';
   configObject['server'] = {connectURL: connect_url, aggregate_call_auth: 'user_only'}; //TODO check options for call + add to form?
 
-  let subgroups = returnObject.subgroups.split(',');
-  configObject['opcode'] = {autogen: cleanBoolean(returnObject.autogen), subgroups: subgroups};
+  let subgroups = combinedObject.subgroups.split(',');
+  configObject['opcode'] = {autogen: cleanBoolean(combinedObject.autogen), subgroups: subgroups};
 
   configObject['intro'] = {
-    program_or_study: returnObject.program_or_study,
-    start_month: returnObject.start.split( '/')[0],
-    start_year: returnObject.start.split('/')[1],
+    program_or_study: combinedObject.program_or_study,
+    start_month: combinedObject.start.split( '/')[0],
+    start_year: combinedObject.start.split('/')[1],
     // mode_studied: , //TODO - add this to the form and find a way to maintain it as optional
-    program_admin_contact: returnObject.program_admin_contact,
-    deployment_partner_name: returnObject.deployment_partner_name_lang1
+    program_admin_contact: combinedObject.program_admin_contact,
+    deployment_partner_name: combinedObject.deployment_partner_name_lang1
   };
 
-  configObject['survey_info'] = getSurveyInfo(returnObject);
-  if(returnObject.label_options) {
-    configObject.label_options = 'https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/label_options/' + returnObject.label_options;
+  configObject['survey_info'] = getSurveyInfo(combinedObject);
+  if(combinedObject.label_options) {
+    configObject.label_options = 'https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/label_options/' + combinedObject.label_options;
   }
 
-  configObject['display_config'] = { use_imperial: cleanBoolean(returnObject.use_imperial) };
-  configObject['metrics'] = { include_test_users: cleanBoolean(returnObject.include_test_users) };
-  configObject['profile_controls'] = { support_upload: false, trip_end_notification: cleanBoolean(returnObject.trip_end_notification) };
+  configObject['display_config'] = { use_imperial: cleanBoolean(combinedObject.use_imperial) };
+  configObject['metrics'] = { include_test_users: cleanBoolean(combinedObject.include_test_users) };
+  configObject['profile_controls'] = { support_upload: false, trip_end_notification: cleanBoolean(combinedObject.trip_end_notification) };
 
   configObject['admin_dashboard'] = {
-    data_trips_columns_exclude: splitList(returnObject.data_trips_columns_exclude),
-    additional_trip_columns: splitList(returnObject.additional_trip_columns),
-    data_uuids_columns_exclude: splitList(returnObject.data_uuids_columns_exclude),
+    data_trips_columns_exclude: splitList(combinedObject.data_trips_columns_exclude),
+    additional_trip_columns: splitList(combinedObject.additional_trip_columns),
+    data_uuids_columns_exclude: splitList(combinedObject.data_uuids_columns_exclude),
     //TODO: will this ever NOT be nrelop?
     token_prefix: "nrelop"
   }
@@ -154,7 +167,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
                     'map_bubble', 'map_trip_lines', 'options_uuids', 'options_emails'];
 
   for(let i = 0; i < ADMIN_LIST.length; i++) {
-    configObject['admin_dashboard'][ADMIN_LIST[i]] = cleanBoolean(returnObject[ADMIN_LIST[i]]);
+    configObject['admin_dashboard'][ADMIN_LIST[i]] = cleanBoolean(combinedObject[ADMIN_LIST[i]]);
   }
   
   console.log( configObject );
