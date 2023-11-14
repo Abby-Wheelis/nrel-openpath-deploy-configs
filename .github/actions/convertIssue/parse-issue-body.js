@@ -95,7 +95,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
   console.log( { fields, bodyData, returnObject } );
 
   let configObject = {};
-  configObject[version] = 1;
+  configObject.version = 1;
   configObject[ts] = Date.now();
 
   let connect_url = 'https://' + returnObject[url_abbreviation] + '-openpath.nrel.gov/api/';
