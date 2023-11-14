@@ -51,12 +51,12 @@ function getSurveyInfo(dataObject) {
 
   //labeling options
   if(dataObject.label_form_path){
-    surveyInfo[trip-labels] = "MULTILABEL";
+    surveyInfo['trip-labels'] = "MULTILABEL";
   } else if (dataObject.label_options && dataObject.label_options != '') {
-    surveyInfo[trip-labels] = "MULTILABEL"; //label_options goes outside of this?
+    surveyInfo['trip-labels'] = "MULTILABEL"; //label_options goes outside of this?
   } else {
     //TODO determine proceedure for custom label surveys
-    surveyInfo[trip-labels] = "ENKETO";
+    surveyInfo['trip-labels'] = "ENKETO";
   }
 }
 
