@@ -1,7 +1,7 @@
 {
   "url_abbreviation": "ec-ebikes",
   "version": 1,
-  "ts": 1699991709924,
+  "ts": 1699994200938,
   "server": {
     "connectURL": "https://ec-ebikes-openpath.nrel.gov/api/",
     "aggregate_call_auth": "user_only"
@@ -28,25 +28,7 @@
         "summary_line_3": "Thanks for helping us!",
         "short_textual_description": "East County is a very vehicle centric development, we're hoping that increasing access to e-bikes can promote lower carbon footprints and more excercise.",
         "why_we_collect": "The data we gather will help us determine if people are using e-bikes and hotspots where we should add a bike lane.",
-        "research_questions": [
-          "",
-          "",
-          ""
-        ]
-      },
-      "None": {
-        "deployment_partner_name": "",
-        "deployment_name": "",
-        "summary_line_1": "",
-        "summary_line_2": "",
-        "summary_line_3": "",
-        "short_textual_description": "",
-        "why_we_collect": "",
-        "research_questions": [
-          "",
-          "",
-          ""
-        ]
+        "research_questions": []
       }
     }
   },
