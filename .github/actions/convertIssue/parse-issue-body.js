@@ -131,6 +131,8 @@ function getTranslatedText(dataObject) {
   if(dataObject.lang_2) {
     translatedText[dataObject['lang_2']] = getTextForLanguage('_lang2', dataObject)
   }
+
+  return translatedText;
 }
 
 /**
@@ -157,7 +159,8 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
 
   let subgroups = combinedObject.subgroups.split(',');
   configObject['opcode'] = {autogen: cleanBoolean(combinedObject.autogen), subgroups: subgroups};
-
+  
+  let textObject = getTranslatedText(combinedObject);
   configObject['intro'] = {
     program_or_study: combinedObject.program_or_study,
     start_month: combinedObject.start.split( '/')[0],
@@ -165,7 +168,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
     // mode_studied: , //TODO - add this to the form and find a way to maintain it as optional
     program_admin_contact: combinedObject.program_admin_contact,
     deployment_partner_name: combinedObject.deployment_partner_name_lang1,
-    translated_text: getTranslatedText(combinedObject)
+    translated_text: textObject
   };
 
   configObject['survey_info'] = getSurveyInfo(combinedObject);
