@@ -108,6 +108,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
   console.log("combined form and body to get", returnObject);
 
   let configObject = {};
+  congigObject['url_abbreviation'] = returnObject.url_abbreviation;
   configObject['version'] = 1;
   configObject['ts'] = Date.now();
 

@@ -32,9 +32,8 @@ export async function issueToJson() {
 
     let configData = await parseIssueBody(issueTemplatePath, body);
 
-    configData.opened_by = user.login;
-
     exportVariable("IssueNumber", number);
+    exportVariable("OpenedBy", user.login);
 
     // create output dir
     await mkdir(outputDir, { recursive: true });
