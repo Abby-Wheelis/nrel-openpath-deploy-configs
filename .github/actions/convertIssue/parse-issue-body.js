@@ -119,9 +119,22 @@ function getTextForLanguage(language_key, dataObject) {
   for(let i = 0; i < textKeys.length; i++) {
     languageText[textKeys[i]] = dataObject[textKeys[i] + language_key];
   }
-  languageText.research_questions = [dataObject['research_question_1' + language_key],
-                                     dataObject['research_question_2' + language_key],
-                                     dataObject['research_question_3' + language_key]];
+
+  let researchQuestions = [dataObject['research_question_1' + language_key],
+                           dataObject['research_question_2' + language_key],
+                           dataObject['research_question_3' + language_key]];
+
+  let blank = true;               
+  for(let i = 0; i < researchQuestions.length; i++) {
+    if(researchQuestions[i] != "") {
+      blank = false;
+    }
+  }
+  if(!blank) {
+    languageText.research_questions = researchQuestions;
+  } else {
+    languageText.research_questions = [];
+  }
 
   return languageText;
 }
