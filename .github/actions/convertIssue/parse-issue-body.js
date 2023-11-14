@@ -10,6 +10,10 @@ function splitList(str){
   for(let i = 0; i < list.length; i++) {
     list[i] = list[i].trim();
   }
+
+  if(list.length == 1 && list[0] == ''){
+    return [];
+  }
   return list;
 }
 
