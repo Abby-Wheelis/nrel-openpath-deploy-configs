@@ -120,7 +120,7 @@ function getSurveyInfo(dataObject) {
  */
 export async function parseIssueBody(githubIssueTemplateFile, body) {
   //first handle the input, combined object for key/value pairs
-  let fields = parseFields(githubIssueTemplateFile);
+  let fields = await parseFields(githubIssueTemplateFile);
   let bodyData = parseBodyData(body);
   let combinedObject = parseCombined(fields, bodyData);
 
