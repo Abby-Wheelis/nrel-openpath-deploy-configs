@@ -1,10 +1,6 @@
 import { readFile } from "node:fs/promises";
-
 import yaml from "js-yaml";
 
-function removeNewLines(str) {
-  return str.replace(/[\r\n]*/g, "");
-}
 function normalizeNewLines(str) {
   return str.replace(/\r\n/g, "\n");
 }
@@ -12,9 +8,9 @@ function normalizeNewLines(str) {
 function splitList(str){
   let list = str.split(',');
   for(let i = 0; i < list.length; i++) {
-    console.log("in split list", list[i]);
     list[i] = list[i].trim();
   }
+  return list;
 }
 
 function getSurveyInfo(dataObject) {
@@ -113,8 +109,8 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
 
   configObject['intro'] = {
     program_or_study: returnObject.program_or_study,
-    // start_month: returnObject.start.split( '/')[0],
-    // start_year: returnObject.start.split('/')[1],
+    start_month: returnObject.start.split( '/')[0],
+    start_year: returnObject.start.split('/')[1],
     // mode_studied: , //TODO - add this to the form and find a way to maintain it as optional
     program_admin_contact: returnObject.program_admin_contact,
     deployment_partner_name: returnObject.deployment_partner_name_lang1
@@ -130,27 +126,22 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
   configObject['profile_controls'] = { support_upload: false, trip_end_notification: returnObject.trip_end_notification };
 
   configObject['admin_dashboard'] = {
-    overview_users: returnObject.overview_users,
-    overview_active_users: returnObject.overview_active_users,
-    overview_trips: returnObject.overview_trips,
-    overview_signup_trends: returnObject.overview_signup_trends,
-    overview_trips_trend: returnObject.overview_trips_trend,
-    data_uuids: returnObject.data_uuids,
-    data_trips: returnObject.data_trips,
     data_trips_columns_exclude: splitList(returnObject.data_trips_columns_exclude),
     additional_trip_columns: splitList(returnObject.additional_trip_columns),
     data_uuids_columns_exclude: splitList(returnObject.data_uuids_columns_exclude),
-    token_generate: returnObject.token_generate,
     //TODO: will this ever NOT be nrelop?
-    token_prefix: "nrelop",
-    map_heatmap: returnObject.map_heatmap,
-    map_bubble: returnObject.map_bubble,
-    map_trip_lines: returnObject.map_trip_lines,
-    push_send: returnObject.push_send,
-    options_uuids: returnObject.options_uuids,
-    options_emails: returnObject.options_emails
+    token_prefix: "nrelop"
   }
 
-  console.log( { configObject } );
+  //list of all the boolean values in the admin dashboard section, add to issue template and list for new value
+  let ADMIN_LIST = [overview_users, overview_active_users, overview_trips, overview_signup_trends, 
+                    overview_trips_trend, data_uuids, data_trips, token_generate, map_heatmap, 
+                    map_bubble, map_trip_lines, options_uuids, options_emails];
+
+  for(let i = 0; i < ADMIN_LIST.length; i++) {
+    configObject['admin_dashboard'][ADMIN_LIST[i]] = returnObject[ADMIN_LIST[i]];
+  }
+  
+  console.log( configObject );
   return configObject;
 }
