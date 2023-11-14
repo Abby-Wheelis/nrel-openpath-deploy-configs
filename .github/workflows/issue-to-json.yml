@@ -48,7 +48,7 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
           branch: new-config
-          delete-branch: true
+          delete-branch: false
           title: '[Config] create new file'
           body: |
             Adding a new config file
@@ -61,4 +61,4 @@ jobs:
             automated pr
           assignees: Abby-Wheelis
           reviewers: Abby-Wheelis
-          draft: false
+          draft: true
