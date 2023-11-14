@@ -12,7 +12,8 @@ function normalizeNewLines(str) {
 function splitList(str){
   let list = str.split(',');
   for(let i = 0; i < list.length; i++) {
-    list[i] = list[i].strip();
+    console.log("in split list", list[i]);
+    list[i] = list[i].trim();
   }
 }
 
@@ -42,8 +43,8 @@ function getSurveyInfo(dataObject) {
         "compatibleWith": 1,
         "dataKey": "manual/demographic_survey",
         "labelTemplate": {
-          "en": dataObject.labelTemplate_lang1.split('-')[1].strip(),
-          "es": dataObject.labelTemplate_lang2.split('-')[1].strip()
+          "en": dataObject.labelTemplate_lang1.split('-')[1].trim(),
+          "es": dataObject.labelTemplate_lang2.split('-')[1].trim()
         }
       }
     }
