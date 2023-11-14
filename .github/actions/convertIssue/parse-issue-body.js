@@ -70,7 +70,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
 
   // Markdown fields aren’t included in output body
   let fields = githubFormData.body.filter(field => field.type !== "markdown");
-  console.log("got fields", fields);
+  console.log("got ", fields.length, " fields", fields);
 
   // Warning: this will likely not handle new lines in a textarea field input
   let bodyData = normalizeNewLines(body).split("\n").filter(entry => {
@@ -80,7 +80,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
 
     return entry === "_No response_" ? "" : entry;
   });
-  console.log("got form body", bodyData);
+  console.log("got form body with length ", bodyData.length, bodyData);
 
   //map fields and entries to an object, then we map that 
   let returnObject = {};
