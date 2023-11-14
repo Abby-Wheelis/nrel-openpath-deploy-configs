@@ -1,7 +1,7 @@
 {
   "url_abbreviation": "ec-ebike",
   "version": 1,
-  "ts": 1699990609376,
+  "ts": 1699991090246,
   "server": {
     "connectURL": "https://ec-ebike-openpath.nrel.gov/api/",
     "aggregate_call_auth": "user_only"
@@ -18,7 +18,33 @@
     "start_month": "11",
     "start_year": "2023",
     "program_admin_contact": "Abby Wheelis, East County Transportation Office (abby@east.gov)",
-    "deployment_partner_name": "East County Transportation Office"
+    "deployment_partner_name": "East County Transportation Office",
+    "translated_text": {
+      "en": {
+        "deployment_partner_name": "East County Transportation Office",
+        "deployment_name": "East County E-Bikes",
+        "summary_line_1": "This project aims to measure the impact of the e-bikes we're discounting",
+        "summary_line_2": "We want to know if you use the bikes",
+        "summary_line_3": "Thanks for helping us!",
+        "short_textual_description": "East County is a very vehicle centric development, we're hoping that increasing access to e-bikes can promote lower carbon footprints and more excercise.",
+        "why_we_collect": "The data we gather will help us determine if people are using e-bikes and hotspots where we should add a bike lane.",
+        "research_question_1": "",
+        "research_question_2": "",
+        "research_question_3": ""
+      },
+      "None": {
+        "deployment_partner_name": "",
+        "deployment_name": "",
+        "summary_line_1": "",
+        "summary_line_2": "",
+        "summary_line_3": "",
+        "short_textual_description": "",
+        "why_we_collect": "",
+        "research_question_1": "",
+        "research_question_2": "",
+        "research_question_3": ""
+      }
+    }
   },
   "survey_info": {
     "surveys": {
