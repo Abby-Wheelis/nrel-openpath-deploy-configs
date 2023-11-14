@@ -110,6 +110,29 @@ function getSurveyInfo(dataObject) {
   return surveyInfo;
 }
 
+function getTextForLanguage(language_key, dataObject) {
+  const textKeys = ['deployment_partner_name', 'deployment_name', 'summary_line_1', 
+                    'summary_line_2', 'summary_line_3', 'short_textual_description', 
+                    'why_we_collect', 'research_question_1', 'research_question_2', 
+                    'research_question_3'];
+  
+  let languageText = {};
+  for(let i = 0; i < textKeys.length; i++) {
+    languageText[textKeys[i]] = dataObject[textKeys[i] + language_key];
+  }
+
+  return languageText;
+}
+
+function getTranslatedText(dataObject) {
+  let translatedText = {};
+  translatedText[dataObject['lang_1']] = getTextForLanguage('_lang_1', dataObject);
+
+  if(dataObject.lang_2) {
+    translatedText[dataObject['lang_2']] = getTextForLanguage('_lang_2', dataObject)
+  }
+}
+
 /**
  * TODO: ensure good error messaging so deployers can fix bugs
  * fields are from the issue template
@@ -141,7 +164,8 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
     start_year: combinedObject.start.split('/')[1],
     // mode_studied: , //TODO - add this to the form and find a way to maintain it as optional
     program_admin_contact: combinedObject.program_admin_contact,
-    deployment_partner_name: combinedObject.deployment_partner_name_lang1
+    deployment_partner_name: combinedObject.deployment_partner_name_lang1,
+    translated_text: getTranslatedText(combinedObject)
   };
 
   configObject['survey_info'] = getSurveyInfo(combinedObject);
