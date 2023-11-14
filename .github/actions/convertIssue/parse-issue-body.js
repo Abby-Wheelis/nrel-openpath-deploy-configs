@@ -13,6 +13,14 @@ function splitList(str){
   return list;
 }
 
+function cleanBoolean(str) {
+  if(str === 'true' || str === 'True'){
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function getSurveyInfo(dataObject) {
   console.log("constructing survey info");
   let surveyInfo = {};
@@ -55,6 +63,8 @@ function getSurveyInfo(dataObject) {
     //TODO determine proceedure for custom label surveys
     surveyInfo['trip-labels'] = "ENKETO";
   }
+
+  return surveyInfo;
 }
 
 /**
@@ -105,7 +115,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
   configObject['server'] = {connectURL: connect_url, aggregate_call_auth: 'user_only'}; //TODO check options for call + add to form?
 
   let subgroups = returnObject.subgroups.split(',');
-  configObject['opcode'] = {autogen: returnObject.autogen, subgroups: subgroups};
+  configObject['opcode'] = {autogen: cleanBoolean(returnObject.autogen), subgroups: subgroups};
 
   configObject['intro'] = {
     program_or_study: returnObject.program_or_study,
@@ -121,9 +131,9 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
     configObject.label_options = 'https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/label_options/' + returnObject.label_options;
   }
 
-  configObject['display_config'] = { use_imperial: returnObject.use_imperial };
-  configObject['metrics'] = { include_test_users: returnObject.include_test_users };
-  configObject['profile_controls'] = { support_upload: false, trip_end_notification: returnObject.trip_end_notification };
+  configObject['display_config'] = { use_imperial: cleanBoolean(returnObject.use_imperial) };
+  configObject['metrics'] = { include_test_users: cleanBoolean(returnObject.include_test_users) };
+  configObject['profile_controls'] = { support_upload: false, trip_end_notification: cleanBoolean(returnObject.trip_end_notification) };
 
   configObject['admin_dashboard'] = {
     data_trips_columns_exclude: splitList(returnObject.data_trips_columns_exclude),
@@ -139,7 +149,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
                     'map_bubble', 'map_trip_lines', 'options_uuids', 'options_emails'];
 
   for(let i = 0; i < ADMIN_LIST.length; i++) {
-    configObject['admin_dashboard'][ADMIN_LIST[i]] = returnObject[ADMIN_LIST[i]];
+    configObject['admin_dashboard'][ADMIN_LIST[i]] = cleanBoolean(returnObject[ADMIN_LIST[i]]);
   }
   
   console.log( configObject );
