@@ -17,6 +17,7 @@ function splitList(str){
 }
 
 function getSurveyInfo(dataObject) {
+  console.log("constructing survey info");
   let surveyInfo = {};
 
   //demographics survey settings
@@ -69,6 +70,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
 
   // Markdown fields aren’t included in output body
   let fields = githubFormData.body.filter(field => field.type !== "markdown");
+  console.log("got fields", fields);
 
   // Warning: this will likely not handle new lines in a textarea field input
   let bodyData = normalizeNewLines(body).split("\n").filter(entry => {
@@ -78,6 +80,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
 
     return entry === "_No response_" ? "" : entry;
   });
+  console.log("got form body", bodyData);
 
   //map fields and entries to an object, then we map that 
   let returnObject = {};
@@ -91,8 +94,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
 
     returnObject.fields[j].id = entry;
   }
-
-  console.log( { fields, bodyData, returnObject } );
+  console.log("combined form and body to get", returnObject);
 
   let configObject = {};
   configObject['version'] = 1;
