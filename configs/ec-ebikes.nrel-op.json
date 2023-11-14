@@ -1,7 +1,7 @@
 {
   "url_abbreviation": "ec-ebikes",
   "version": 1,
-  "ts": 1699987691914,
+  "ts": 1699990798248,
   "server": {
     "connectURL": "https://ec-ebikes-openpath.nrel.gov/api/",
     "aggregate_call_auth": "user_only"
