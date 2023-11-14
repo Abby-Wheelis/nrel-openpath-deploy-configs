@@ -154,9 +154,9 @@ function getTranslatedText(dataObject) {
  * TODO: ensure good error messaging so deployers can fix bugs
  * fields are from the issue template
  * bodyData is from the filled out issue
- * @param {*} githubIssueTemplateFile 
- * @param {*} body 
- * @returns 
+ * @param {*} githubIssueTemplateFile - the issue template that created this request
+ * @param {*} body - body of the issue for this request
+ * @returns an object for the config file, formatted as existing files in repo are
  */
 export async function parseIssueBody(githubIssueTemplateFile, body) {
   //first handle the input, combined object for key/value pairs
@@ -180,7 +180,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
     program_or_study: combinedObject.program_or_study,
     start_month: combinedObject.start.split( '/')[0],
     start_year: combinedObject.start.split('/')[1],
-    mode_studied: combinedObject.mode_studied, //TODO - add this to the form and find a way to maintain it as optional
+    mode_studied: combinedObject.mode_studied, 
     program_admin_contact: combinedObject.program_admin_contact,
     deployment_partner_name: combinedObject.deployment_partner_name_lang1,
     translated_text: textObject
@@ -190,6 +190,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
   if(combinedObject.label_options) {
     configObject.label_options = 'https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/label_options/' + combinedObject.label_options;
   }
+  //TODO: add handling for custom trip surveys
 
   configObject['display_config'] = { use_imperial: cleanBoolean(combinedObject.use_imperial) };
   configObject['metrics'] = { include_test_users: cleanBoolean(combinedObject.include_test_users) };
@@ -211,6 +212,8 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
   for(let i = 0; i < ADMIN_LIST.length; i++) {
     configObject['admin_dashboard'][ADMIN_LIST[i]] = cleanBoolean(combinedObject[ADMIN_LIST[i]]);
   }
+
+  //TODO: add handling for custom reminder schemes
   
   console.log( configObject );
   return configObject;
