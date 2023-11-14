@@ -126,10 +126,10 @@ function getTextForLanguage(language_key, dataObject) {
 
 function getTranslatedText(dataObject) {
   let translatedText = {};
-  translatedText[dataObject['lang_1']] = getTextForLanguage('_lang_1', dataObject);
+  translatedText[dataObject['lang_1']] = getTextForLanguage('_lang1', dataObject);
 
   if(dataObject.lang_2) {
-    translatedText[dataObject['lang_2']] = getTextForLanguage('_lang_2', dataObject)
+    translatedText[dataObject['lang_2']] = getTextForLanguage('_lang2', dataObject)
   }
 }
 
