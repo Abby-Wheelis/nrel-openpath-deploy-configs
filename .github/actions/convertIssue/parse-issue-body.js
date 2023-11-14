@@ -106,8 +106,8 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
 
   configObject['intro'] = {
     program_or_study: returnObject.program_or_study,
-    start_month: returnObject.start.split( '/')[0],
-    start_year: returnObject.start.split('/')[1],
+    // start_month: returnObject.start.split( '/')[0],
+    // start_year: returnObject.start.split('/')[1],
     // mode_studied: , //TODO - add this to the form and find a way to maintain it as optional
     program_admin_contact: returnObject.program_admin_contact,
     deployment_partner_name: returnObject.deployment_partner_name_lang1
