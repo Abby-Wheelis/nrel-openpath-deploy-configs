@@ -92,7 +92,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
 
     let entry = bodyData[j];
 
-    returnObject[fields[j]].id = entry;
+    returnObject[fields[j].id] = entry;
   }
   console.log("combined form and body to get", returnObject);
 
