@@ -124,7 +124,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
     configObject.label_options = 'https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/label_options/' + returnObject.label_options;
   }
 
-  configObject['display_config'] = { use_imperial: returnObjec.use_imperial };
+  configObject['display_config'] = { use_imperial: returnObject.use_imperial };
   configObject['metrics'] = { include_test_users: returnObject.include_test_users };
   configObject['profile_controls'] = { support_upload: false, trip_end_notification: returnObject.trip_end_notification };
 
