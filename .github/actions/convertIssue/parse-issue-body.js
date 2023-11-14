@@ -125,7 +125,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
   let combinedObject = parseCombined(fields, bodyData);
 
   let configObject = {};
-  congigObject['url_abbreviation'] = combinedObject.url_abbreviation;
+  configObject['url_abbreviation'] = combinedObject.url_abbreviation;
   configObject['version'] = 1;
   configObject['ts'] = Date.now();
 
