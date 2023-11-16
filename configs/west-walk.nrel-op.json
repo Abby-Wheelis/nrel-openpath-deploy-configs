@@ -1,7 +1,7 @@
 {
   "url_abbreviation": "west-walk",
   "version": 1,
-  "ts": 1699994977464,
+  "ts": 1700093693913,
   "server": {
     "connectURL": "https://west-walk-openpath.nrel.gov/api/",
     "aggregate_call_auth": "user_only"
@@ -17,7 +17,7 @@
     "program_or_study": "program",
     "start_month": "11",
     "start_year": "2023",
-    "mode_studied": "walk",
+    "mode_studied": "walks",
     "program_admin_contact": "Abby Wheelis, West County Transportation Office (abby@east.gov)",
     "deployment_partner_name": "West County Transportation Office",
     "translated_text": {
