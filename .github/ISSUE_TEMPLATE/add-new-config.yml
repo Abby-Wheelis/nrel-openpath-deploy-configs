@@ -510,7 +510,7 @@ body:
   id: admin_access
   attributes:
     label: Admin Access Emails
-    description: Please enter a comman separated list of emails to which we will grant access to the admin dashboard. This will usually be a relatively short list.
+    description: Please enter a comma separated list of emails to which we will grant access to the admin dashboard. This will usually be a relatively short list.
   validations:
     required: true 
 # - type: dropdown
@@ -556,4 +556,4 @@ body:
   id: trip_survey_path
   attributes:
     label: Custom Trip Survey
-    description: Please add a path to a trip survey, something like "https://raw.githubusercontent.com/sebastianbarry/nrel-openpath-deploy-configs/surveys-info-and-surveys-data/survey-resources/data-json/trip-end-survey-multiple-select.json"
+    description: Please add a path to a trip survey, something like "https://github.com/e-mission/nrel-openpath-deploy-configs/tree/main/survey_resources/samples/sample_trip-end_multi-select.json"
