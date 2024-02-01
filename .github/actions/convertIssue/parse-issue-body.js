@@ -141,11 +141,12 @@ function getSurveyInfo(dataObject) {
         },
       };
     } else {
+      let lower_url = dataObject.url_abbreviation.toLowerCase();
       surveyInfo.surveys = {
         UserProfileSurvey: {
           formPath:
             "https://raw.githubusercontent.com/e-mission/nrel-openpath-deploy-configs/main/survey_resources/" +
-            dataObject.url_abbreviation +
+            lower_url+
             "/" +
             dataObject.custom_dem_survey_path,
           version: 1,
@@ -268,7 +269,7 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
   //then compose the config object
   let configObject = {};
   try {
-    configObject["url_abbreviation"] = combinedObject.url_abbreviation;
+    configObject["url_abbreviation"] = combinedObject.url_abbreviation.toLowerCase();
     configObject["version"] = 1;
     configObject["ts"] = Date.now();
 
@@ -354,8 +355,8 @@ export async function parseIssueBody(githubIssueTemplateFile, body) {
 
     //list of administrator emails
     let email_list = combinedObject.admin_access.split(',');
-    if (email_list.length > 4){
-      setFailed("sorry, admin access is limited to a maximum of 4 emails, please shorten your list of emails"); 
+    if (email_list.length > 5){
+      setFailed("sorry, admin access is limited to a maximum of 5 emails, please shorten your list of emails"); 
     }
     // leading/trailing whitespace will lead to errors
     for (let i = 0; i < email_list.length; i++) {
