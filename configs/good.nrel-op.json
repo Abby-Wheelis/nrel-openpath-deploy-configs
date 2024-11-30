@@ -1,0 +1,84 @@
+{
+  "url_abbreviation": "good",
+  "version": 1,
+  "ts": 1706293068925,
+  "server": {
+    "connectURL": "https://good-openpath.nrel.gov/api/",
+    "aggregate_call_auth": "user_only"
+  },
+  "opcode": {
+    "autogen": true,
+    "subgroups": [
+      ""
+    ]
+  },
+  "intro": {
+    "program_or_study": "program",
+    "start_month": "11",
+    "start_year": "2023",
+    "mode_studied": "",
+    "program_admin_contact": "Abby Wheelis, East County Transportation Office (abby@east.gov)",
+    "deployment_partner_name": "City of Golden CO",
+    "translated_text": {
+      "en": {
+        "deployment_partner_name": "City of Golden CO",
+        "deployment_name": "hello world",
+        "summary_line_1": "This project aims to measure the impact of the e-bikes we're discounting",
+        "summary_line_2": "",
+        "summary_line_3": "",
+        "short_textual_description": "We wish to check interest around bike riding, to potentially include bike lanes in our road widening projects",
+        "why_we_collect": "If you ride the bike a lot we might put in some more bike lanes",
+        "research_questions": []
+      }
+    }
+  },
+  "survey_info": {
+    "surveys": {
+      "UserProfileSurvey": {
+        "formPath": "json/demo-survey-v2.json",
+        "version": 1,
+        "compatibleWith": 1,
+        "dataKey": "manual/demographic_survey",
+        "labelTemplate": {
+          "en": "Answered",
+          "es": "Contestada"
+        }
+      }
+    },
+    "trip-labels": "MULTILABEL"
+  },
+  "display_config": {
+    "use_imperial": true
+  },
+  "metrics": {
+    "include_test_users": true
+  },
+  "profile_controls": {
+    "support_upload": false,
+    "trip_end_notification": false
+  },
+  "admin_dashboard": {
+    "data_trips_columns_exclude": [],
+    "additional_trip_columns": [],
+    "data_uuids_columns_exclude": [],
+    "token_prefix": "nrelop",
+    "toekn_generate": "true",
+    "overview_users": true,
+    "overview_active_users": true,
+    "overview_trips": true,
+    "overview_signup_trends": true,
+    "overview_trips_trend": true,
+    "data_uuids": true,
+    "data_trips": true,
+    "map_heatmap": true,
+    "map_bubble": true,
+    "map_trip_lines": false,
+    "options_uuids": true,
+    "options_emails": true,
+    "admin_access": [
+      "hi@email.com",
+      "hello@email.org",
+      "howdy@list.gov"
+    ]
+  }
+}
